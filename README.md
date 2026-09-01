@@ -42,8 +42,9 @@ It does not absorb neighboring module responsibilities. Core primitives stay in 
 - `gnalloy.org/codec-websocket/deflate` (`deflate`)
 
 ## Gnalloy Dependencies
-- `gnalloy.org/gnalloy`
+
 - `gnalloy.org/codec-http1`
+- `gnalloy.org/gnalloy`
 - `gnalloy.org/handler-timeout`
 
 ## Common Integration Pattern

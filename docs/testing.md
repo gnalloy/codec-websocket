@@ -19,19 +19,58 @@ Run focused tests while working on a small behavior change:
 GOWORK=off GOTOOLCHAIN=local go test ./... -run 'TestName' -count=1
 ```
 
-Current discovered test and benchmark entry points:
+## Discovered Test Entry Points
+
+This inventory is generated from the current `_test.go` files in this repository. It is intentionally complete so documentation review can catch stale test, benchmark, fuzz, and example coverage when code changes.
+
+Total discovered entry points: 38.
+
+### Tests (31)
+- `TestAcceptKeyMatchesRFCExample`
+- `TestClientFrameDecoderRejectsMaskedServerFrame`
+- `TestClientHandshakeRejectsInvalidResponse`
+- `TestClientHandshakeWritesRequestAndValidatesResponse`
+- `TestCompressorDecompressorRoundTrip`
+- `TestCompressorPassesControlFrames`
+- `TestControlFrameHandlerEchoesCloseAndClosesChannel`
+- `TestControlFrameHandlerRespondsToPing`
+- `TestControlFrameHandlerTracksOutboundCloseState`
+- `TestDecompressorRejectsControlRSV`
+- `TestDecompressorRejectsInflatedLimit`
+- `TestFragmentAggregatorCombinesTextFragments`
+- `TestFragmentedMessageCompressesOnFinalContinuation`
+- `TestFrameDecoderAllowsConfiguredRSV1`
+- `TestFrameDecoderMaskedPayload`
+- `TestFrameDecoderRejectsInvalidCloseStatus`
+- `TestFrameDecoderRejectsInvalidOpcodeBeforeExtendedLength`
+- `TestFrameDecoderRequiresExplicitRSV`
+- `TestFrameEncoder`
+- `TestFrameEncoderMaskedPayloadWritesSingleBuffer`
+- `TestFrameEncoderWritesRSV1`
+- `TestIdleHandlerClosesOnReaderIdle`
+- `TestIdleHandlerWritesPingOnWriterIdle`
+- `TestLegacyFrameCompressorCompressesEachFrame`
+- `TestLegacyFrameExtensionParsesDeflateFrameNames`
+- `TestNewCloseFrameRejectsInvalidStatus`
+- `TestOfferAndParse`
+- `TestServerFrameDecoderRejectsUnmaskedClientFrame`
+- `TestServerHandshakeWritesSwitchingProtocolsAndRemovesHTTPHandlers`
+- `TestUTF8ValidatorAcceptsFragmentedText`
+- `TestUTF8ValidatorClosesOnInvalidText`
+
+### Benchmarks (6)
 - `BenchmarkCompressMessage`
 - `BenchmarkCompressorCompositePayload`
 - `BenchmarkDecompressMessage`
 - `BenchmarkDecompressorPayload`
 - `BenchmarkFrameDecoderMaskedFragmentedPayload`
 - `BenchmarkFrameEncoderMaskedCompositePayload`
+
+### Fuzz Targets (1)
 - `FuzzWebSocketFrameDecoder`
-- `TestAcceptKeyMatchesRFCExample`
-- `TestClientFrameDecoderRejectsMaskedServerFrame`
-- `TestClientHandshakeRejectsInvalidResponse`
-- `TestClientHandshakeWritesRequestAndValidatesResponse`
-- `TestCompressorDecompressorRoundTrip`
+
+### Examples (0)
+- No Example functions are currently declared.
 
 ## Race Checks
 

@@ -42,8 +42,9 @@ GOWORK=off GOTOOLCHAIN=local go test ./... -count=1
 - `gnalloy.org/codec-websocket/deflate`（`deflate`）
 
 ## Gnalloy 依赖
-- `gnalloy.org/gnalloy`
+
 - `gnalloy.org/codec-http1`
+- `gnalloy.org/gnalloy`
 - `gnalloy.org/handler-timeout`
 
 ## 常见集成方式

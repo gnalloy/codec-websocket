@@ -20,11 +20,13 @@ Gnalloy WebSocket frame、handshake、Pipeline Handler 与 permessage-deflate �
 - `gnalloy.org/codec-websocket/deflate`（`deflate`）
 
 ## 直接 Gnalloy 依赖
-- `gnalloy.org/gnalloy`
+
 - `gnalloy.org/codec-http1`
+- `gnalloy.org/gnalloy`
 - `gnalloy.org/handler-timeout`
 
-## 当前模块规划中的直接下游
+## 当前仓库集合中的直接下游
+
 - `gnalloy.org/examples`
 - `gnalloy.org/recipes`
 
