@@ -125,16 +125,22 @@ func (h *ClientHandshakeHandler) ChannelRead(ctx *channel.HandlerContext, msg an
 }
 
 func (h *ServerHandshakeHandler) ChannelRead(ctx *channel.HandlerContext, msg any) {
-	req, ok := msg.(http1.Request)
-	if !ok {
+	var req *http1.Request
+	switch value := msg.(type) {
+	case http1.Request:
+		req = &value
+	case *http1.Request:
+		req = value
+	}
+	if req == nil {
 		ctx.FireChannelRead(msg)
 		return
 	}
 	if h.path != "" && req.URI != h.path {
-		ctx.FireChannelRead(req)
+		ctx.FireChannelRead(msg)
 		return
 	}
-	if !IsUpgradeRequest(req) {
+	if !IsUpgradeRequest(*req) {
 		req.Release()
 		_ = ctx.Channel().WriteAndFlush(http1.Response{StatusCode: 400})
 		_ = ctx.Close()

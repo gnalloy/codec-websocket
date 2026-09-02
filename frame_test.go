@@ -240,7 +240,7 @@ func TestServerHandshakeWritesSwitchingProtocolsAndRemovesHTTPHandlers(t *testin
 	_ = ch.Pipeline().AddLast("events", events)
 	defer sink.release()
 
-	ch.Pipeline().FireChannelRead(http1.Request{
+	ch.Pipeline().FireChannelRead(&http1.Request{
 		Method:  "GET",
 		URI:     "/ws",
 		Version: "HTTP/1.1",
