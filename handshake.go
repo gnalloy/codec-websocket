@@ -95,12 +95,18 @@ func (h *ClientHandshakeHandler) ChannelActive(ctx *channel.HandlerContext) {
 }
 
 func (h *ClientHandshakeHandler) ChannelRead(ctx *channel.HandlerContext, msg any) {
-	resp, ok := msg.(http1.Response)
-	if !ok {
+	var resp *http1.Response
+	switch value := msg.(type) {
+	case http1.Response:
+		resp = &value
+	case *http1.Response:
+		resp = value
+	}
+	if resp == nil {
 		ctx.FireChannelRead(msg)
 		return
 	}
-	if !h.isUpgradeResponse(resp) {
+	if !h.isUpgradeResponse(*resp) {
 		resp.Release()
 		ctx.FireExceptionCaught(ErrInvalidHandshake)
 		_ = ctx.Close()
